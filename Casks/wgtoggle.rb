@@ -12,25 +12,27 @@ cask "wgtoggle" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
   depends_on formula: "wireguard-tools"
+  depends_on macos: :ventura
 
   app "WGToggle.app"
 
-  # The app is ad-hoc signed, not notarized.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/WGToggle.app"]
+  # The app is ad-hoc signed, not notarized: clear the quarantine flag so it opens.
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/WGToggle.app"],
+        writable_paths: ["WGToggle.app"],
+        writable_base:  :appdir
   end
 
   uninstall quit: "local.wgtoggle"
 
-  zap trash: [
-        "~/Library/Logs/WGToggle",
-        "~/Library/Preferences/local.wgtoggle.plist",
-      ],
-      delete: [
+  zap delete: [
         "/etc/sudoers.d/wgtoggle",
         "/Library/PrivilegedHelperTools/wgtoggle",
+      ],
+      trash:  [
+        "~/Library/Logs/WGToggle",
+        "~/Library/Preferences/local.wgtoggle.plist",
       ]
 end
