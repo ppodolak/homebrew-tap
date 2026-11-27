@@ -16,6 +16,7 @@ cask "wgtoggle" do
   depends_on macos: :ventura
 
   app "WGToggle.app"
+  binary "#{appdir}/WGToggle.app/Contents/Resources/wgtoggle"
 
   # The app is ad-hoc signed, not notarized: clear the quarantine flag so it opens.
   postflight_steps do
