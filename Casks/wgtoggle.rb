@@ -17,6 +17,9 @@ cask "wgtoggle" do
 
   app "WGToggle.app"
   binary "#{appdir}/WGToggle.app/Contents/Resources/wgtoggle"
+  bash_completion "#{appdir}/WGToggle.app/Contents/Resources/completions/wgtoggle.bash"
+  zsh_completion "#{appdir}/WGToggle.app/Contents/Resources/completions/_wgtoggle"
+  fish_completion "#{appdir}/WGToggle.app/Contents/Resources/completions/wgtoggle.fish"
 
   # The app is ad-hoc signed, not notarized: clear the quarantine flag so it opens.
   postflight_steps do
