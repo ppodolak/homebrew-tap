@@ -1,6 +1,6 @@
 cask "wgtoggle" do
-  version "1.9.0"
-  sha256 "66131f019660afaf44a61fd2386c660fa74ba754119b988e62e3ae431dff97e2"
+  version "1.10.0"
+  sha256 "118cdc6645a20bea59c9be22e56b6f80952f9769758628cad16f39acbf6b33f0"
 
   url "https://github.com/ppodolak/wgtoggle/releases/download/v#{version}/WGToggle-#{version}.dmg"
   name "WGToggle"
